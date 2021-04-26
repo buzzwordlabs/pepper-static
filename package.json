@@ -1,0 +1,69 @@
+{
+  "name": "digital-receptionist",
+  "version": "1.0.0",
+  "repository": "https://github.com/callpepper/callpepper-static.git",
+  "author": "Ethan Naluz <26469879+enaluz@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd client/ && yarn start",
+    "build": "cd client/ && yarn && yarn build && cd ../server && yarn",
+    "ngrok": "./ngrok http 8080",
+    "setup": "yarn && cd client && yarn && cd ../server && yarn",
+    "release": "standard-version",
+    "deploy": "cd client/ && yarn deploy"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "2.27.0",
+    "@typescript-eslint/parser": "2.27.0",
+    "babel-eslint": "10.1.0",
+    "commitizen": "^4.0.4",
+    "concurrently": "^5.1.0",
+    "cz-conventional-changelog": "3.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "4.7.0",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "7.19.0",
+    "eslint-plugin-react-hooks": "3.0.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.2",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.4",
+    "pretty-quick": "^2.0.1",
+    "standard-version": "^7.1.0",
+    "stylelint": "^13.3.0",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-prettier": "^1.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*": [
+      "pretty-quick --staged"
+    ],
+    "*.{js, jsx}": [
+      "eslint --fix"
+    ],
+    "*.css": [
+      "stylelint --aei --fix"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
